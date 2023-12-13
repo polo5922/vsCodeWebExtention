@@ -2,12 +2,9 @@
   "manifest_version": 3,
   "name": "Vs Code github",
   "version": "0.1.0",
-  "description": "Extention chrome for adding vscode button in github",
+  "description": "Extention firefox for adding vscode button in github",
   "icons": {
     "512": "src/public/icons/icon_512.png"
-  },
-  "background": {
-    "service_worker": "src/background.js"
   },
   "web_accessible_resources": [
     {
@@ -19,12 +16,23 @@
     "default_title": "Vs_code_github",
     "default_popup": "src/popup.html"
   },
-  "permissions": ["scripting"],
+  "background": {
+    "scripts": ["src/background.js"],
+    "type": "module"
+  },
+  "permissions": ["scripting", "activeTab", "tabs"],
   "content_scripts": [
     {
       "matches": ["*://github.com/*"],
-      "run_at": "document_idle",
-      "js": ["src/contentScript.js"]
+      "js": ["src/contentScript.js"],
+      "run_at": "document_end"
     }
-  ]
+  ],
+
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "paul.barbaux.vs_code_github@firefox",
+      "strict_min_version": "42.0"
+    }
+  }
 }
