@@ -19,7 +19,6 @@
     "default_title": "Vs_code_github",
     "default_popup": "src/popup.html"
   },
-  "permissions": ["scripting"],
   "content_scripts": [
     {
       "matches": ["*://github.com/*"],
